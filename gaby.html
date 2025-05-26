@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filme do Stitch</title>
+  <title>Página da Gaby</title>
   <style>
     body {
       margin: 0;
@@ -50,19 +50,19 @@
 </head>
 <body>
   <div class="overlay">
-    <h1>Filme do Stitch \o/</h1>
+    <h1>Página da Gaby/</h1>
     <div id="contador">Carregando contador...</div>
   </div>
 
   <script>
-    const destino = new Date("May 25, 2025 15:30:00").getTime();
+    const destino = new Date("Jun 15, 2025 00:00:00").getTime();
 
     const atualizarContador = () => {
       const agora = new Date().getTime();
       const distancia = destino - agora;
 
       if (distancia < 0) {
-        document.getElementById("contador").innerHTML = "O filme já começou!";
+        document.getElementById("contador").innerHTML = "Em manutenção";
         return;
       }
 
@@ -72,7 +72,7 @@
       const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
       document.getElementById("contador").innerHTML =
-        `${dias}d ${horas}h ${minutos}m ${segundos}s para o filme!`;
+        `${dias}d ${horas}h ${minutos}m ${segundos}s para 23 meses!`;
     };
 
     setInterval(atualizarContador, 1000);
