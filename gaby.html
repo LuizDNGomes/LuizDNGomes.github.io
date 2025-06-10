@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página da Gaby</title>
+  <title>Página da Gatona 💌</title>
   <style>
     body {
       margin: 0;
@@ -37,6 +37,20 @@
       font-size: 2rem;
     }
 
+    #contadorProgressivo {
+      font-size: 1.8rem;
+      margin-top: 1rem;
+      color: #ffffff;
+    }
+
+    .mensagem-amor {
+      font-family: 'Segoe Script', cursive;
+      font-size: 1.6rem;
+      color: #eee;
+      margin: 1.5rem 0;
+      line-height: 1.4;
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 1.8rem;
@@ -45,13 +59,25 @@
       #contador {
         font-size: 1.5rem;
       }
+
+      #contadorProgressivo {
+        font-size: 1.3rem;
+      }
+
+      .mensagem-amor {
+        font-size: 1.3rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <h1>Página da Gaby \o/</h1>
+    <h1>Página da Gatona! \o/ 💌<br><br></h1>
     <div id="contador">Carregando contador...</div>
+    <div class="mensagem-amor">
+      Cada dia ao seu lado é uma nova aventura, te amo mais que tudo nesse mundo! ❤️
+    </div>
+    <div id="contadorProgressivo">Carregando...</div>
   </div>
 
   <script>
@@ -75,8 +101,38 @@
         `${dias}d ${horas}h ${minutos}m ${segundos}s para 23 meses!`;
     };
 
-    setInterval(atualizarContador, 1000);
+    // Adicionar função para o contador progressivo
+    function atualizarContadorProgressivo() {
+      const inicio = new Date("Jul 15, 2023 00:00:00").getTime();
+      const agora = new Date().getTime();
+      const tempoPassado = agora - inicio;
+
+      const dias = Math.floor(tempoPassado / (1000 * 60 * 60 * 24));
+      const meses = Math.floor(dias / 30);
+      const anos = Math.floor(meses / 12);
+      const diasRestantes = dias % 30;
+      const mesesRestantes = meses % 12;
+
+      let texto = "<br>Dias desde que você me disse sim: <br>";
+      if (anos > 0) {
+        texto += `${anos} ${anos === 1 ? 'ano' : 'anos'}, `;
+      }
+      if (mesesRestantes > 0) {
+        texto += `${mesesRestantes} ${mesesRestantes === 1 ? 'mês' : 'meses'} e `;
+      }
+      texto += `${diasRestantes} ${diasRestantes === 1 ? 'dia' : 'dias'}`;
+
+      document.getElementById("contadorProgressivo").innerHTML = texto;
+    }
+
+    // Atualizar ambos os contadores
+    setInterval(() => {
+      atualizarContador();
+      atualizarContadorProgressivo();
+    }, 1000);
+    
     atualizarContador();
+    atualizarContadorProgressivo();
   </script>
 </body>
 </html>
