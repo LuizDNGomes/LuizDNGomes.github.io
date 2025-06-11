@@ -103,24 +103,41 @@
 
     // Adicionar função para o contador progressivo
     function atualizarContadorProgressivo() {
-      const inicio = new Date("Jul 15, 2023 00:00:00").getTime();
-      const agora = new Date().getTime();
-      const tempoPassado = agora - inicio;
+      const startDate = new Date('2023-07-15');
+      const now = new Date();
+      
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
 
-      const dias = Math.floor(tempoPassado / (1000 * 60 * 60 * 24));
-      const meses = Math.floor(dias / 30);
-      const anos = Math.floor(meses / 12);
-      const diasRestantes = dias % 30;
-      const mesesRestantes = meses % 12;
+      // Ajuste para meses negativos
+      if (months < 0) {
+          years--;
+          months += 12;
+      }
+
+      // Ajuste para dias negativos
+      if (days < 0) {
+          months--;
+          // Obtém o último dia do mês anterior
+          const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+          days += lastMonth.getDate();
+      }
+
+      // Ajuste caso os meses fiquem negativos após correção dos dias
+      if (months < 0) {
+          years--;
+          months += 12;
+      }
 
       let texto = "<br>Dias desde que você me disse sim: <br>";
-      if (anos > 0) {
-        texto += `${anos} ${anos === 1 ? 'ano' : 'anos'}, `;
+      if (years > 0) {
+          texto += `${years} ${years === 1 ? 'ano' : 'anos'}, `;
       }
-      if (mesesRestantes > 0) {
-        texto += `${mesesRestantes} ${mesesRestantes === 1 ? 'mês' : 'meses'} e `;
+      if (months > 0) {
+          texto += `${months} ${months === 1 ? 'mês' : 'meses'} e `;
       }
-      texto += `${diasRestantes} ${diasRestantes === 1 ? 'dia' : 'dias'}`;
+      texto += `${days} ${days === 1 ? 'dia' : 'dias'}`;
 
       document.getElementById("contadorProgressivo").innerHTML = texto;
     }

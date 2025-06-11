@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ff99cc;
+      background-color: #993399;
       color: white;
       min-height: 100vh;
     }
@@ -152,20 +152,36 @@
 
     // Adicionar o código do contador
     function updateCounter() {
-      const startDate = new Date('2023-07-15');
-      const now = new Date();
-      
-      const diffTime = Math.abs(now - startDate);
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      const diffMonths = Math.floor(diffDays / 30);
-      const diffYears = Math.floor(diffDays / 365);
-      
-      const remainingMonths = diffMonths % 12;
-      const remainingDays = diffDays % 30;
+    const startDate = new Date('2023-07-15');
+    const now = new Date();
+    
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    let days = now.getDate() - startDate.getDate();
 
-      const counterText = `${diffYears} anos, ${remainingMonths} meses e ${remainingDays} dias`;
-      document.getElementById('time-together').textContent = counterText;
+    // Ajuste para meses negativos
+    if (months < 0) {
+        years--;
+        months += 12;
     }
+
+    // Ajuste para dias negativos
+    if (days < 0) {
+        months--;
+        // Obtém o último dia do mês anterior
+        const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += lastMonth.getDate();
+    }
+
+    // Ajuste caso os meses fiquem negativos após correção dos dias
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    const counterText = `${years} ${years === 1 ? 'ano' : 'anos'}, ${months} ${months === 1 ? 'mês' : 'meses'} e ${days} ${days === 1 ? 'dia' : 'dias'}`;
+    document.getElementById('time-together').textContent = counterText;
+}
 
     // Atualizar o contador a cada segundo
     updateCounter();
