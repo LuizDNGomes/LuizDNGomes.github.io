@@ -3,189 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feliz Dia dos Namorados</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <title>Página da Gatona 💌</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #993399;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+      background: url('https://raw.githubusercontent.com/LuizDNGomes/LuizDNGomes.github.io/refs/heads/main/img/Pinho%20e%20Stitch.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
-      min-height: 100vh;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      backdrop-filter: brightness(0.4);
     }
 
-    .container {
-      padding: 20px;
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    .message {
+    .overlay {
       background-color: rgba(0, 0, 0, 0.5);
       padding: 2rem;
-      border-radius: 15px;
-      margin: 20px auto;
+      border-radius: 10px;
       max-width: 90%;
+      margin: auto;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
-      color: #ffffff;
-      text-align: center;
     }
 
-    .love-text {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      text-align: center;
-      margin-bottom: 2rem;
+    #contador {
+      font-size: 2rem;
     }
 
-    .swiper {
-      width: 100%;
-      /* Ajustando altura para manter proporção aproximada de 4896x6528 */
-      height: 500px;
-      margin: 20px auto;
-    }
-
-    .swiper-slide {
-      background-position: center;
-      background-size: contain;
-      background-repeat: no-repeat;
-      border-radius: 15px;
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    .swiper-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* Alterado de 'cover' para 'contain' */
-      border-radius: 15px;
-    }
-
-    .counter {
-      text-align: center;
-      font-size: 1.1rem;
+    #contadorProgressivo {
+      font-size: 1.8rem;
       margin-top: 1rem;
       color: #ffffff;
     }
 
-    @media (max-width: 412px) { /* Galaxy S20 width */
-      .container {
-        padding: 10px;
-      }
-      
+    .mensagem-amor {
+      font-family: 'Segoe Script', cursive;
+      font-size: 1.6rem;
+      color: #eee;
+      margin: 1.5rem 0;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
       h1 {
+        font-size: 1.8rem;
+      }
+
+      #contador {
         font-size: 1.5rem;
       }
 
-      .love-text {
-        font-size: 1rem;
+      #contadorProgressivo {
+        font-size: 1.3rem;
       }
 
-      .swiper {
-        height: 400px; /* Ajustado para telas menores */
-      }
-
-      .counter {
-        font-size: 0.9rem;
+      .mensagem-amor {
+        font-size: 1.3rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="message">
-      <h1>❤️ Feliz Dia dos Namorados, Amor! ❤️</h1>
-      <div class="love-text">
-        Cada momento ao seu lado é especial. Você é minha melhor amiga, minha parceira, 
-        meu amor. Obrigado por fazer parte da minha vida e por me fazer tão feliz. 
-        Te amo mais que tudo!
-      </div>
-      <div class="counter">
-        Dias desde que você me disse sim:<br>
-        <span id="time-together"></span>
-      </div>
+  <div class="overlay">
+    <h1>Página da Gatona! \o/ 💌<br><br></h1>
+    <div id="contador">Carregando contador...</div>
+    <div class="mensagem-amor">
+      Cada dia ao seu lado é uma nova aventura, te amo mais que tudo nesse mundo! ❤️
     </div>
-
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/Fim%20de%20ano.jpg?raw=true" alt="Casal 1">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/Floripa.jpg?raw=true" alt="Casal 2">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/Pinho%20e%20Stitch.jpg?raw=true" alt="Casal 3">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/pinhos.jpg?raw=true" alt="Casal 4">
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
+    <div id="contadorProgressivo">Carregando...</div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script>
-    const swiper = new Swiper('.swiper', {
-      effect: 'slide',
-      loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
+    const destino = new Date("Jun 15, 2025 00:00:00").getTime();
 
-    // Adicionar o código do contador
-    function updateCounter() {
-    const startDate = new Date('2023-07-15');
-    const now = new Date();
+    const atualizarContador = () => {
+      const agora = new Date().getTime();
+      const distancia = destino - agora;
+
+      if (distancia < 0) {
+        document.getElementById("contador").innerHTML = "Feliz 23 meses, Amor!";
+        return;
+      }
+
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+      document.getElementById("contador").innerHTML =
+        `${dias}d ${horas}h ${minutos}m ${segundos}s para 23 meses!`;
+    };
+
+    // Adicionar função para o contador progressivo
+    function atualizarContadorProgressivo() {
+      const startDate = new Date('2023-07-15');
+      const now = new Date();
+      
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
+
+      // Ajuste para meses negativos
+      if (months < 0) {
+          years--;
+          months += 12;
+      }
+
+      // Ajuste para dias negativos
+      if (days < 0) {
+          months--;
+          // Obtém o último dia do mês anterior
+          const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+          days += lastMonth.getDate();
+      }
+
+      // Ajuste caso os meses fiquem negativos após correção dos dias
+      if (months < 0) {
+          years--;
+          months += 12;
+      }
+
+      let texto = "<br>Dias desde que você me disse sim: <br>";
+      if (years > 0) {
+          texto += `${years} ${years === 1 ? 'ano' : 'anos'}, `;
+      }
+      if (months > 0) {
+          texto += `${months} ${months === 1 ? 'mês' : 'meses'} e `;
+      }
+      texto += `${days} ${days === 1 ? 'dia' : 'dias'}`;
+
+      document.getElementById("contadorProgressivo").innerHTML = texto;
+    }
+
+    // Atualizar ambos os contadores
+    setInterval(() => {
+      atualizarContador();
+      atualizarContadorProgressivo();
+    }, 1000);
     
-    let years = now.getFullYear() - startDate.getFullYear();
-    let months = now.getMonth() - startDate.getMonth();
-    let days = now.getDate() - startDate.getDate();
-
-    // Ajuste para meses negativos
-    if (months < 0) {
-        years--;
-        months += 12;
-    }
-
-    // Ajuste para dias negativos
-    if (days < 0) {
-        months--;
-        // Obtém o último dia do mês anterior
-        const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += lastMonth.getDate();
-    }
-
-    // Ajuste caso os meses fiquem negativos após correção dos dias
-    if (months < 0) {
-        years--;
-        months += 12;
-    }
-
-    const counterText = `${years} ${years === 1 ? 'ano' : 'anos'}, ${months} ${months === 1 ? 'mês' : 'meses'} e ${days} ${days === 1 ? 'dia' : 'dias'}`;
-    document.getElementById('time-together').textContent = counterText;
-}
-
-    // Atualizar o contador a cada segundo
-    updateCounter();
-    setInterval(updateCounter, 1000);
+    atualizarContador();
+    atualizarContadorProgressivo();
   </script>
 </body>
 </html>
