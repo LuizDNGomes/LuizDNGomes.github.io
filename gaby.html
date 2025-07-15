@@ -75,33 +75,25 @@
     <h1>Página da Gatona! \o/ 💌<br><br></h1>
     <div id="contador">Carregando contador...</div>
     <div class="mensagem-amor">
-      Cada dia ao seu lado é uma nova aventura, te amo mais que tudo nesse mundo! ❤️<br><br> Nossos dias futuros, dias de você e eu, são o que mais desejo!<br> Você é a razão do meu sorriso, minha alegria, minha vida!<br> Obrigado por ser a pessoa incrível que você é!<br> Te amo infinitamente! 💖
+Há exatos 731 dias, conheci a felicidade mais pura, o seu sim!
+ Desde então, tenho você ao meu lado. Cada dia com você é uma nova aventura, uma nova razão pra sorrir. Meu amor por você vai além das palavras, além do mundo, além do tempo. 
+Sonho com nosso futuro, dias vividos por nós dois, cheios de carinho, risadas e cumplicidade. Você é a luz que ilumina meus dias, a paz que embala minhas noites, principalmente quando você pousa em meu peito depois de um longo dia.
+O nosso amor dá sentido à minha nossa vida.
+ Obrigado por ser exatamente quem você é: incrível, única, minha.
+Eu te amo infinitamente, em todos os idiomas, em todas as formas possíveis. 💖 Sou absurdamente feliz por ter você em minha vida. 
     </div>
     <div id="contadorProgressivo">Carregando...</div>
   </div>
 
   <script>
-    const destino = new Date("Jul 15, 202 00:00:00").getTime();
+    const destino = new Date("Jul 15, 2025 00:00:00").getTime();
 
     const atualizarContador = () => {
       const agora = new Date().getTime();
       const distancia = destino - agora;
 
       if (distancia < 0) {
-        document.getElementById("contador").innerHTML = `
-          <div style="font-size: 1.8rem; margin-bottom: 1rem;">Feliz 2 Anos, Amor! 🥳🎉</div>
-          <div style="font-size: 1.2rem; line-height: 1.5; color: #fff;">
-            Há exatos 731 dias, conheci a felicidade mais pura, o seu sim!<br><br>
-            Desde então, tenho você ao meu lado. Cada dia com você é uma nova aventura, uma nova razão pra sorrir. 
-            Meu amor por você vai além das palavras, além do mundo, além do tempo.<br><br>
-            Sonho com nosso futuro, dias vividos por nós dois, cheios de carinho, risadas e cumplicidade. 
-            Você é a luz que ilumina meus dias, a paz que embala minhas noites, principalmente quando você pousa em meu peito depois de um longo dia.<br><br>
-            O nosso amor dá sentido à minha nossa vida.<br><br>
-            Obrigado por ser exatamente quem você é: incrível, única, minha.<br><br>
-            Eu te amo infinitamente, em todos os idiomas, em todas as formas possíveis. 💖 
-            Sou absurdamente feliz por ter você em minha vida.
-          </div>
-        `;
+        document.getElementById("contador").innerHTML = "Feliz 2 Anos, Amor! 🥳🎉";
         return;
       }
 
