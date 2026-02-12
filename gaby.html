@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-      background: url('https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/20250906_223105.jpg?raw=true') no-repeat center center fixed;
+      background: url('https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/1.jpg?raw=true') no-repeat center center fixed;
       background-size: cover;
       color: white;
       text-align: center;
@@ -51,6 +51,15 @@
       line-height: 1.4;
     }
 
+    #proximoMes {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 1.4rem;
+      color: #ffd700;
+      margin-top: 1rem;
+      line-height: 1.3;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 1.8rem;
@@ -67,6 +76,10 @@
       .mensagem-amor {
         font-size: 1.3rem;
       }
+
+      #proximoMes {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
@@ -74,33 +87,119 @@
   <div class="overlay">
     <h1>Página da Gatona! 🎉<br><br></h1>
     <div id="contador">Carregando contador...</div>
-    <div class="mensagem-amor">
-      Mais um mês juntos! 💕 <br>Já já a frase muda!<br><br>
+    <div class="mensagem-amor" id="mensagemDia">
+      Carregando mensagem do dia... ✨<br>
     </div>
     <div id="contadorProgressivo">Carregando...</div>
+    <div id="proximoMes" style="margin-top: 1rem; font-size: 1.4rem; color: #ffd700;"></div>
   </div>
 
   <script>
-    const destino = new Date("Nov 15, 2025 00:00:00").getTime();
+    // Array de imagens para o carrossel
+    const imagens = [
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/1.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/2.jpg?raw=true', 
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/3.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/4.jpg?raw=true'
+    ];
+    
+    let indiceImagemAtual = 0;
+    
+    // Função para trocar imagem de fundo
+    function trocarImagemFundo() {
+      document.body.style.backgroundImage = `url('${imagens[indiceImagemAtual]}')`;
+      indiceImagemAtual = (indiceImagemAtual + 1) % imagens.length;
+    }
+    
+    // Inicializar carrossel
+    trocarImagemFundo();
+    setInterval(trocarImagemFundo, 8000); // Muda a cada 8 segundos
+    
+    // Data de início do relacionamento
+    const inicioRelacionamento = new Date('2023-07-15');
+    
+    // Função para calcular próximo aniversário de mês
+    function calcularProximoAniversario() {
+      const agora = new Date();
+      let proximoAniversario = new Date(agora.getFullYear(), agora.getMonth(), 15);
+      
+      // Se já passou o dia 15 deste mês, o próximo é no próximo mês
+      if (agora.getDate() > 15) {
+        proximoAniversario.setMonth(proximoAniversario.getMonth() + 1);
+      }
+      
+      return proximoAniversario;
+    }
+    
+    // Função para calcular quantos meses completados
+    function calcularMesesCompletados() {
+      const agora = new Date();
+      const inicioMes = agora.getDate() >= 15 ? agora.getMonth() : agora.getMonth() - 1;
+      const inicioAno = agora.getDate() >= 15 || agora.getMonth() > 6 ? agora.getFullYear() : agora.getFullYear() - 1;
+      
+      let mesesCompletados = (inicioAno - inicioRelacionamento.getFullYear()) * 12 + (inicioMes - inicioRelacionamento.getMonth());
+      
+      if (inicioMes < 6 && inicioAno === 2023) { // Julho é mês 6 (0-indexado)
+        mesesCompletados = 0;
+      }
+      
+      return mesesCompletados;
+    }
+    
+    // Frases especiais para cada contexto
+    const frasesEspeciais = {
+      antesDia: [
+        "Cada dia ao seu lado é único e especial! 💕",
+        "Nosso amor cresce mais forte a cada momento! ✨", 
+        "Você é meu porto seguro em todos os dias! 🌟",
+        "Seu sorriso ilumina até os meus dias mais difíceis! ☀️",
+        "Obrigado por fazer cada dia valer a pena! 🥰",
+        "Seu carinho torna tudo mais bonito! 🌸",
+        "Cada momento juntos é um presente precioso! 🎁"
+      ],
+      diaEspecial: [
+        "🎉 Hoje completamos mais um mês de amor! 🎉",
+        "🎊 Aniversário de namoro! Um mês a mais juntos! 🎊", 
+        "💝 Mais um mês de histórias incríveis escritas juntos! 💝",
+        "🌹 Celebrando outro mês do nosso amor! 🌹",
+        "✨ Hoje é dia de festa! Mais um mês juntinhos! ✨"
+      ],
+      proximoMes: [
+        "Ansiosos para criar mais memórias no próximo mês! 🚀",
+        "O próximo mês promete ser cheio de aventuras juntos! 🌈", 
+        "Mal posso esperar pelas surpresas do próximo mês! 🎯",
+        "Que o próximo mês seja ainda melhor que este! 🌟",
+        "Rumo ao próximo mês com o coração cheio de amor! 💖"
+      ]
+    };
+    
+    // Função para obter frase aleatória
+    function obterFraseAleatoria(tipo) {
+      const frases = frasesEspeciais[tipo];
+      return frases[Math.floor(Math.random() * frases.length)];
+    }
 
     const atualizarContador = () => {
-      const agora = new Date().getTime();
-      const distancia = destino - agora;
+      const agora = new Date();
+      const proximoAniversario = calcularProximoAniversario();
+      const distancia = proximoAniversario - agora;
+      
+      const mesesCompletados = calcularMesesCompletados();
+      const proximoNumeroMes = mesesCompletados + 1;
 
-      if (distancia < 0) {
+      if (distancia < 0 || agora.getDate() === 15) {
+        // É o dia do aniversário de mês!
         document.getElementById("contador").innerHTML = `
-          <div style="font-size: 1.8rem; margin-bottom: 1rem;">🎉 Aniversário de Namoro! 🎉<br>2 Anos e 4 Meses! 🥳</div>
+          <div style="font-size: 1.8rem; margin-bottom: 1rem;">🎉 Aniversário de Namoro! 🎉<br>${proximoNumeroMes} ${proximoNumeroMes === 1 ? 'Mês' : 'Meses'}! 🥳</div>
           <div style="font-family: 'Segoe Script', cursive; font-size: 1.2rem; line-height: 1.5; color: #eee;">
-            
-            E lá vamos nós! Mais um mês completado juntos! 🎊<br><br>
-            Muitas risadas, aventuras e momentos incríveis aconteceram nesses 28 meses.<br><br>
-            Obrigado por todos os momentos compartilhados, pelas risadas, 
-            pelos perrengues superados juntos e por cada dia ao seu lado!<br><br>
+            ${obterFraseAleatoria('diaEspecial')}<br><br>
+            Já são ${proximoNumeroMes} ${proximoNumeroMes === 1 ? 'mês' : 'meses'} vivendo momentos incríveis juntos!<br><br>
+            Obrigado por todos os sorrisos, aventuras e amor compartilhado!<br><br>
             Vamos que vamos para muitos outros meses juntos! 🚀<br><br>
           </div>
         `;
-        // Esconder a mensagem original
-        document.querySelector(".mensagem-amor").style.display = "none";
+        // Esconder a mensagem original no dia especial
+        document.getElementById("mensagemDia").style.display = "none";
         return;
       }
 
@@ -110,7 +209,23 @@
       const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
       document.getElementById("contador").innerHTML =
-        `${dias}d ${horas}h ${minutos}m ${segundos}s para completar 28 meses! 🎉`;
+        `${dias}d ${horas}h ${minutos}m ${segundos}s para completar ${proximoNumeroMes} ${proximoNumeroMes === 1 ? 'mês' : 'meses'}! 🎉`;
+        
+      // Atualizar mensagem do dia (quando não é aniversário)
+      document.getElementById("mensagemDia").innerHTML = `
+        ${obterFraseAleatoria('antesDia')}<br><br>
+      `;
+      document.getElementById("mensagemDia").style.display = "block";
+      
+      // Mostrar informação sobre o próximo mês
+      const proximaData = new Date(proximoAniversario);
+      proximaData.setMonth(proximaData.getMonth() + 1);
+      const nomeProximoMes = proximaData.toLocaleDateString('pt-BR', { month: 'long' }).toLowerCase();
+      
+      document.getElementById("proximoMes").innerHTML = `
+        📅 Em ${nomeProximoMes}, vamos completar ${proximoNumeroMes + 1} ${proximoNumeroMes + 1 === 1 ? 'mês' : 'meses'}!<br>
+        ${obterFraseAleatoria('proximoMes')}
+      `;
     };
 
     // Adicionar função para o contador progressivo
