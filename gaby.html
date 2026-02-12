@@ -251,7 +251,7 @@
   <!-- Tela de Loading -->
   <div class="loading-screen" id="loadingScreen">
     <div class="loading-heart">💖</div>
-    <div class="loading-text">Carregando nossa página especial...</div>
+    <div class="loading-text">Carregando o amor da nossa página!</div>
     <div class="loading-dots"></div>
   </div>
 
@@ -295,7 +295,7 @@
     
     // Inicializar carrossel
     trocarImagemFundo();
-    setInterval(trocarImagemFundo, 8000); // Muda a cada 8 segundos
+    setInterval(trocarImagemFundo, 10000); // Muda a cada 10 segundos
     
     // Data de início do relacionamento
     const inicioRelacionamento = new Date('2023-07-15');
@@ -364,12 +364,29 @@
       return { anos, meses, dias };
     }
     
-    // Frases especiais para cada contexto
+    // Frases que alternam por dia
     const frasesEspeciais = {
-      antesDia: "Cada dia ao seu lado é único e especial! 💕",
-      diaEspecial: "🎉 Hoje completamos mais um mês de amor! 🎉",
+      antesDia: [
+        "Cada dia ao seu lado é único e especial! 💕",
+        "Nosso amor cresce mais forte a cada momento! ✨",
+        "Você é meu porto seguro em todos os dias! 🌟",
+        "Seu sorriso ilumina até os meus dias mais difíceis! ☀️",
+        "Obrigado por fazer cada dia valer a pena! 🥰",
+        "Seu carinho torna tudo mais bonito! 🌸",
+        "Cada momento juntos é um presente precioso! 🎁"
+      ],
+      diaEspecial: "🎉 Hoje completamos mais um mês de amor! 🎉<br>Que dia especial para nós dois! 💖<br>Mais um mês de histórias lindas para contar! ✨",
       proximoMes: "Ansiosos para criar mais memórias no próximo mês! 🚀"
     };
+    
+    // Função para obter frase do dia (baseada no dia do mês)
+    function obterFraseDoDia() {
+      const agora = new Date();
+      const diaDoMes = agora.getDate();
+      // Usa o dia do mês para determinar qual frase usar (0-6)
+      const indiceFrase = (diaDoMes - 1) % 7;
+      return frasesEspeciais.antesDia[indiceFrase];
+    }
 
     const atualizarContador = () => {
       const agora = new Date();
@@ -402,11 +419,16 @@
       document.getElementById("contador").innerHTML =
         `${dias}d ${horas}h ${minutos}m ${segundos}s para completar ${proximoMes} ${proximoMes === 1 ? 'mês' : 'meses'}! 🎉`;
         
-      // Mensagem do dia fixa (não muda constantemente)
-      if (document.getElementById("mensagemDia").innerHTML.trim() === "Carregando mensagem do dia... ✨<br>") {
+      // Mensagem do dia que alterna baseada no dia atual
+      if (document.getElementById("mensagemDia").innerHTML.trim() === "Carregando mensagem do dia... ✨<br>" || 
+          document.getElementById("mensagemDia").dataset.lastDay !== agora.getDate().toString()) {
+        
+        const fraseHoje = obterFraseDoDia();
         document.getElementById("mensagemDia").innerHTML = `
-          ${frasesEspeciais.antesDia}<br><br>
+          ${fraseHoje}<br><br>
         `;
+        // Marcar o dia atual para não ficar mudando
+        document.getElementById("mensagemDia").dataset.lastDay = agora.getDate().toString();
       }
       document.getElementById("mensagemDia").style.display = "block";
       
