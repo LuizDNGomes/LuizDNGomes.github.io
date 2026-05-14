@@ -315,7 +315,7 @@
       return proximoAniversario;
     }
     
-    function calcularProximoMesACompletar() {
+    function calcularMesesConcluidos() {
       const agora = new Date();
       const inicio = new Date('2023-07-15');
       
@@ -384,14 +384,14 @@
       const proximoAniversario = calcularProximoAniversario();
       const distancia = proximoAniversario - agora;
       
-      const proximoMes = calcularProximoMesACompletar();
-
+      const mesesConcluidos = calcularMesesConcluidos();
+      
       if (distancia < 0 || agora.getDate() === 15) {
         document.getElementById("contador").innerHTML = `
-          <div style="font-size: 1.8rem; margin-bottom: 1rem;">🎉 Aniversário de Namoro! 🎉<br>${proximoMes} ${proximoMes === 1 ? 'Mês' : 'Meses'}! 🥳</div>
+          <div style="font-size: 1.8rem; margin-bottom: 1rem;">🎉 Aniversário de Namoro! 🎉<br>${mesesConcluidos} ${mesesConcluidos === 1 ? 'Mês' : 'Meses'}! 🥳</div>
           <div style="font-family: 'Segoe Script', cursive; font-size: 1.2rem; line-height: 1.5; color: #eee;">
             ${frasesEspeciais.diaEspecial}<br><br>
-            Já são ${proximoMes} ${proximoMes === 1 ? 'mês' : 'meses'} vivendo momentos incríveis juntos!<br><br>
+            Já são ${mesesConcluidos} ${mesesConcluidos === 1 ? 'mês' : 'meses'} vivendo momentos incríveis juntos!<br><br>
             Obrigado por todos os sorrisos, aventuras e amor compartilhado!<br><br>
             Vamos que vamos para muitos outros meses juntos! 🚀<br><br>
           </div>
@@ -405,8 +405,10 @@
       const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
+      const mesesACompletar = mesesConcluidos + 1;
+
       document.getElementById("contador").innerHTML =
-        `${dias}d ${horas}h ${minutos}m ${segundos}s para completar ${proximoMes} ${proximoMes === 1 ? 'mês' : 'meses'}! 🎉`;
+        `${dias}d ${horas}h ${minutos}m ${segundos}s para completar ${mesesACompletar} ${mesesACompletar === 1 ? 'mês' : 'meses'}! 🎉`;
         
       if (document.getElementById("mensagemDia").innerHTML.trim() === "Carregando mensagem do dia... ✨<br>" || 
           document.getElementById("mensagemDia").dataset.lastDay !== agora.getDate().toString()) {
@@ -423,11 +425,10 @@
       
       if (agora.getDate() < 15) {
         dataMostrar = new Date(agora.getFullYear(), agora.getMonth(), 15);
-        mesesMostrar = proximoMes;
       } else {
         dataMostrar = new Date(proximoAniversario);
-        mesesMostrar = proximoMes + 1;
       }
+      mesesMostrar = mesesACompletar;
       
       const nomeMes = dataMostrar.toLocaleDateString('pt-BR', { month: 'long' }).toLowerCase();
       
