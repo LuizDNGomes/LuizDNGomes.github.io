@@ -9,8 +9,10 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-      background: url('https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/20250906_223105.jpg?raw=true') no-repeat center center fixed;
       background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: white;
       text-align: center;
       display: flex;
@@ -18,6 +20,153 @@
       justify-content: center;
       height: 100vh;
       backdrop-filter: brightness(0.4);
+      transition: background-image 2s ease-in-out;
+    }
+
+    /* Tela de Loading */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ff6b6b, #ffeaa7, #ff7675, #fd79a8);
+      background-size: 400% 400%;
+      animation: gradientShift 3s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 1s ease-out;
+    }
+
+    .loading-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .loading-heart {
+      font-size: 4rem;
+      animation: heartbeat 1.5s ease-in-out infinite;
+      margin-bottom: 2rem;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .loading-text {
+      font-size: 1.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+      animation: fadeInOut 2s ease-in-out infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .loading-dots {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .loading-dots::after {
+      content: '';
+      animation: dots 1.5s infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60% { content: '...'; }
+      80%, 100% { content: ''; }
+    }
+
+    /* Tela de Loading */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ff6b6b, #ffeaa7, #ff7675, #fd79a8);
+      background-size: 400% 400%;
+      animation: gradientShift 3s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 1s ease-out;
+    }
+
+    .loading-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .loading-heart {
+      font-size: 4rem;
+      animation: heartbeat 1.5s ease-in-out infinite;
+      margin-bottom: 2rem;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .loading-text {
+      font-size: 1.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+      animation: fadeInOut 2s ease-in-out infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .loading-dots {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .loading-dots::after {
+      content: '';
+      animation: dots 1.5s infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60% { content: '...'; }
+      80%, 100% { content: ''; }
     }
 
     .overlay {
@@ -26,6 +175,11 @@
       border-radius: 10px;
       max-width: 90%;
       margin: auto;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
     }
 
     h1 {
@@ -35,12 +189,22 @@
 
     #contador {
       font-size: 2rem;
+      min-height: 3em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     #contadorProgressivo {
       font-size: 1.8rem;
       margin-top: 1rem;
       color: #ffffff;
+      min-height: 2.5em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .mensagem-amor {
@@ -49,6 +213,15 @@
       color: #eee;
       margin: 1.5rem 0;
       line-height: 1.4;
+    }
+
+    #proximoMes {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 1.4rem;
+      color: #ffd700;
+      margin-top: 1rem;
+      line-height: 1.3;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
     }
 
     @media (max-width: 600px) {
@@ -67,40 +240,163 @@
       .mensagem-amor {
         font-size: 1.3rem;
       }
+
+      #proximoMes {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Tela de Loading -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-heart">💖</div>
+    <div class="loading-text">Carregando o amor da nossa página!</div>
+    <div class="loading-dots"></div>
+  </div>
+
   <div class="overlay">
     <h1>Página da Gatona! 🎉<br><br></h1>
     <div id="contador">Carregando contador...</div>
-    <div class="mensagem-amor">
-      Mais um mês juntos! 💕 <br>Já já a frase muda!<br><br>
+    <div class="mensagem-amor" id="mensagemDia">
+      Carregando mensagem do dia... ✨<br>
     </div>
     <div id="contadorProgressivo">Carregando...</div>
+    <div id="proximoMes" style="margin-top: 1rem; font-size: 1.4rem; color: #ffd700;"></div>
   </div>
 
   <script>
-    const destino = new Date("Nov 15, 2025 00:00:00").getTime();
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        loadingScreen.classList.add('hide');
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 1000);
+      }, 3000);
+    });
+
+    const imagens = [
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/12.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/11.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/10.jpg?raw=true', 
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/9.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/8.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/7.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/6.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/5.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/4.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/3.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/2.jpg?raw=true',
+      'https://github.com/LuizDNGomes/LuizDNGomes.github.io/blob/main/img/1.jpg?raw=true'
+
+    ];
+    
+    let indiceImagemAtual = 0;
+    
+    function trocarImagemFundo() {
+      document.body.style.backgroundImage = `url('${imagens[indiceImagemAtual]}')`;
+      indiceImagemAtual = (indiceImagemAtual + 1) % imagens.length;
+    }
+    
+    trocarImagemFundo();
+    setInterval(trocarImagemFundo, 10000);
+    
+    const inicioRelacionamento = new Date('2023-07-15');
+    
+    function calcularProximoAniversario() {
+      const agora = new Date();
+      let proximoAniversario = new Date(agora.getFullYear(), agora.getMonth(), 15);
+      
+      if (agora.getDate() > 15) {
+        proximoAniversario.setMonth(proximoAniversario.getMonth() + 1);
+      }
+      
+      return proximoAniversario;
+    }
+    
+    function calcularMesesConcluidos() {
+      const agora = new Date();
+      const inicio = new Date('2023-07-15');
+      
+      let diffAnos = agora.getFullYear() - inicio.getFullYear();
+      let diffMeses = agora.getMonth() - inicio.getMonth();
+      let totalMeses = diffAnos * 12 + diffMeses;
+      
+      if (agora.getDate() < 15) {
+        totalMeses--;
+      }
+      
+      return totalMeses;
+    }
+    
+    function calcularTempoDecorrido() {
+      const agora = new Date();
+      const inicio = new Date('2023-07-15');
+      
+      let anos = agora.getFullYear() - inicio.getFullYear();
+      let meses = agora.getMonth() - inicio.getMonth();
+      let dias = agora.getDate() - inicio.getDate();
+      
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+      
+      if (dias < 0) {
+        meses--;
+        const mesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0);
+        dias += mesAnterior.getDate();
+      }
+      
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+      
+      return { anos, meses, dias };
+    }
+    
+    const frasesEspeciais = {
+      antesDia: [
+        "Cada dia ao seu lado é um presente único! 💕",
+        "Nosso amor cresce e se fortalece a cada momento! ✨",
+        "Você é meu refúgio e meu lugar favorito! 🌟",
+        "Seu sorriso ilumina meus dias e aquece meu coração! ☀️",
+        "Obrigado por tornar minha vida tão especial! 🥰",
+        "Te amo muito mais, cada dia que passa! 💖",
+        "Seu amor transforma tudo em algo mágico e incrível! 🌸",
+        "Cada instante ao seu lado vale ouro! 🎁"
+      ],
+      diaEspecial: "🎉 Hoje é nosso dia especial de novo! 🎉<br>Mais um mês de amor e cumplicidade! 💖<br>Mais uma conquista juntos, mais memórias lindas! ✨",
+      proximoMes: "💌Mal posso esperar pelo que vem por ai! 🛩️🎈💌"
+    };
+    
+    function obterFraseDoDia() {
+      const agora = new Date();
+      const diaDoMes = agora.getDate();
+      const indiceFrase = (diaDoMes - 1) % 7;
+      return frasesEspeciais.antesDia[indiceFrase];
+    }
 
     const atualizarContador = () => {
-      const agora = new Date().getTime();
-      const distancia = destino - agora;
-
-      if (distancia < 0) {
+      const agora = new Date();
+      const proximoAniversario = calcularProximoAniversario();
+      const distancia = proximoAniversario - agora;
+      
+      const mesesConcluidos = calcularMesesConcluidos();
+      
+      if (distancia < 0 || agora.getDate() === 15) {
         document.getElementById("contador").innerHTML = `
-          <div style="font-size: 1.8rem; margin-bottom: 1rem;">🎉 Aniversário de Namoro! 🎉<br>2 Anos e 4 Meses! 🥳</div>
+          <div style="font-size: 1.8rem; margin-bottom: 1rem;">🎉 Aniversário de Namoro! 🎉<br>${mesesConcluidos} ${mesesConcluidos === 1 ? 'Mês' : 'Meses'}! 🥳</div>
           <div style="font-family: 'Segoe Script', cursive; font-size: 1.2rem; line-height: 1.5; color: #eee;">
-            
-            E lá vamos nós! Mais um mês completado juntos! 🎊<br><br>
-            Muitas risadas, aventuras e momentos incríveis aconteceram nesses 28 meses.<br><br>
-            Obrigado por todos os momentos compartilhados, pelas risadas, 
-            pelos perrengues superados juntos e por cada dia ao seu lado!<br><br>
+            ${frasesEspeciais.diaEspecial}<br><br>
+            Já são ${mesesConcluidos} ${mesesConcluidos === 1 ? 'mês' : 'meses'} vivendo momentos incríveis juntos!<br><br>
+            Obrigado por todos os sorrisos, aventuras e amor compartilhado!<br><br>
             Vamos que vamos para muitos outros meses juntos! 🚀<br><br>
           </div>
         `;
-        // Esconder a mensagem original
-        document.querySelector(".mensagem-amor").style.display = "none";
+        document.getElementById("mensagemDia").style.display = "none";
         return;
       }
 
@@ -109,52 +405,55 @@
       const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
+      const mesesACompletar = mesesConcluidos + 1;
+
       document.getElementById("contador").innerHTML =
-        `${dias}d ${horas}h ${minutos}m ${segundos}s para completar 28 meses! 🎉`;
+        `${dias}d ${horas}h ${minutos}m ${segundos}s para completar ${mesesACompletar} ${mesesACompletar === 1 ? 'mês' : 'meses'}! 🎉`;
+        
+      if (document.getElementById("mensagemDia").innerHTML.trim() === "Carregando mensagem do dia... ✨<br>" || 
+          document.getElementById("mensagemDia").dataset.lastDay !== agora.getDate().toString()) {
+        
+        const fraseHoje = obterFraseDoDia();
+        document.getElementById("mensagemDia").innerHTML = `
+          ${fraseHoje}<br><br>
+        `;
+        document.getElementById("mensagemDia").dataset.lastDay = agora.getDate().toString();
+      }
+      document.getElementById("mensagemDia").style.display = "block";
+      
+      let dataMostrar, mesesMostrar;
+      
+      if (agora.getDate() < 15) {
+        dataMostrar = new Date(agora.getFullYear(), agora.getMonth(), 15);
+      } else {
+        dataMostrar = new Date(proximoAniversario);
+      }
+      mesesMostrar = mesesACompletar;
+      
+      const nomeMes = dataMostrar.toLocaleDateString('pt-BR', { month: 'long' }).toLowerCase();
+      
+      document.getElementById("proximoMes").innerHTML = `
+        📅 Em ${nomeMes}, vamos completar ${mesesMostrar} ${mesesMostrar === 1 ? 'mês' : 'meses'}!<br>
+        ${frasesEspeciais.proximoMes}
+      `;
     };
 
-    // Adicionar função para o contador progressivo
     function atualizarContadorProgressivo() {
-      const startDate = new Date('2023-07-15');
-      const now = new Date();
-      
-      let years = now.getFullYear() - startDate.getFullYear();
-      let months = now.getMonth() - startDate.getMonth();
-      let days = now.getDate() - startDate.getDate();
-
-      // Ajuste para meses negativos
-      if (months < 0) {
-          years--;
-          months += 12;
-      }
-
-      // Ajuste para dias negativos
-      if (days < 0) {
-          months--;
-          // Obtém o último dia do mês anterior
-          const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-          days += lastMonth.getDate();
-      }
-
-      // Ajuste caso os meses fiquem negativos após correção dos dias
-      if (months < 0) {
-          years--;
-          months += 12;
-      }
+      const tempoDecorrido = calcularTempoDecorrido();
+      const { anos, meses, dias } = tempoDecorrido;
 
       let texto = "<br>⏰ Tempo juntinhos desde o início: <br>";
-      if (years > 0) {
-          texto += `${years} ${years === 1 ? 'ano' : 'anos'}, `;
+      if (anos > 0) {
+          texto += `${anos} ${anos === 1 ? 'ano' : 'anos'}, `;
       }
-      if (months > 0) {
-          texto += `${months} ${months === 1 ? 'mês' : 'meses'} e `;
+      if (meses > 0) {
+          texto += `${meses} ${meses === 1 ? 'mês' : 'meses'} e `;
       }
-      texto += `${days} ${days === 1 ? 'dia' : 'dias'}`;
+      texto += `${dias} ${dias === 1 ? 'dia' : 'dias'}`;
 
       document.getElementById("contadorProgressivo").innerHTML = texto;
     }
 
-    // Atualizar ambos os contadores
     setInterval(() => {
       atualizarContador();
       atualizarContadorProgressivo();
